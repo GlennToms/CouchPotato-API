@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace CouchPotato.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ClientTest
     {
-        [TestMethod]
+        [Test]
         public void WithHttpAndPortNoEndSlash()
         {
             //Arrange
@@ -23,7 +24,7 @@ namespace CouchPotato.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
+        [Test]
         public void WithHttpAndPortEndSlash()
         {
             //Arrange

@@ -18,7 +18,7 @@ namespace CouchPotato.Tests.Services
     //    protected void AssertSuccess(Response response)
     //    {
     //        Assert.IsNotNull(response);
-    //        Assert.AreEqual(ResponseResult.Success, response.Result);
+    //        Assert.AreEqual(ResponseResult.IsSuccess, response.Result);
     //    }
     //}
 }

@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CouchPotato.Model
+namespace CouchPotato.Model.Logging
 {
-    public class DataResponse<T> : Response
+    public enum Type
     {
-        public T Data { get; set; }
-    }
+        all,
+        error,
+        info,
+        debug
+    };
 }

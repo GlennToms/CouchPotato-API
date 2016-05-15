@@ -36,14 +36,25 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="HttpClientExtensions.cs" />
-    <Compile Include="Model\DataResponce.cs" />
-    <Compile Include="Model\Movie.cs" />
-    <Compile Include="Model\Responce.cs" />
-    <Compile Include="Model\ResponceResult.cs" />
-    <Compile Include="Model\Version.cs" />
+    <Compile Include="Model\Logging\Log.cs" />
+    <Compile Include="Model\Logging\LogList.cs" />
+    <Compile Include="Model\Logging\Type.cs" />
+    <Compile Include="Model\Movie\Files.cs" />
+    <Compile Include="Model\Movie\ImagePoster.cs" />
+    <Compile Include="Model\Movie\Identifiers.cs" />
+    <Compile Include="Model\Movie\Images.cs" />
+    <Compile Include="Model\Movie\Info.cs" />
+    <Compile Include="Model\StatusCodes.cs" />
+    <Compile Include="Model\Movie\Rating.cs" />
+    <Compile Include="Model\Movie\Movie.cs" />
+    <Compile Include="Model\Movie\MovieList.cs" />
+    <Compile Include="Model\Movie\Release.cs" />
+    <Compile Include="Model\Movie\Status.cs" />
+    <Compile Include="Model\Version\Version.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\ApiRequest.cs" />
     <Compile Include="Services\CouchPotatoService.cs" />
+    <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\MovieService.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>

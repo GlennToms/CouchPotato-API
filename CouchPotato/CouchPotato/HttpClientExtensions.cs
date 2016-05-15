@@ -21,6 +21,48 @@ namespace CouchPotato
             return task.Result;
         }
 
+        public static dynamic GetDynamicNoJSON(this HttpClient client, string command)
+        {
+            var task = client.GetDynamicNoJSONAsync(command);
+
+            task.Wait();
+
+            return task.Result;
+        }
+
+        public static async Task<dynamic> GetDynamicNoJSONAsync(this HttpClient client, string command)
+        {
+            var response = await client.GetAsync(Settings.Instance.Url + command);
+            AdjustContentType(response);
+
+            var jsonString = await response.Content.ReadAsStringAsync();
+
+            return jsonString;
+        }
+
+        //My First
+        public static T GetJson<T>(this HttpClient client, string command)
+        {
+            var task = client.GetJsonAsync<T>(command);
+
+            task.Wait();
+
+            return task.Result;
+        }
+        
+        //My Second
+        public static async Task<T> GetJsonAsync<T>(this HttpClient client, string command)
+        {
+            var response = await client.GetAsync(Settings.Instance.Url + command);
+            AdjustContentType(response);
+
+            var jsonString = await response.Content.ReadAsStringAsync();
+            var a = JsonConvert.DeserializeObject<T>(jsonString);
+
+            return a;
+            //return JsonConvert.DeserializeObject<T>(jsonString);
+        }
+
         public static async Task<dynamic> GetDynamicAsync(this HttpClient client, string command)
         {
             var response = await client.GetAsync(Settings.Instance.Url + command);
@@ -30,54 +72,7 @@ namespace CouchPotato
 
             return JObject.Parse(jsonString);
         }
-
-        public static async Task<T> GetAsync<T>(this HttpClient client, string command)
-        {
-            var response = await client.GetResponseAsync<T>(command);
-            return response.Data;
-        }
-
-        public static T Get<T>(this HttpClient client, string command)
-        {
-            var task = client.GetAsync<T>(command);
-            task.Wait();
-
-            return task.Result;
-        }
-
-        public static T Get<T>(this HttpClient client, string command, params object[] parameters)
-        {
-            var task = client.GetAsync<T>(string.Format(command, parameters));
-            task.Wait();
-
-            return task.Result;
-        }
-
-        public static async Task<DataResponse<T>> GetResponseAsync<T>(this HttpClient client, string command)
-        {
-            var response = await client.GetAsync(Settings.Instance.Url + command);
-            AdjustContentType(response);
-
-            var jsonString = await response.Content.ReadAsStringAsync();
-
-            return JsonConvert.DeserializeObject<DataResponse<T>>(jsonString);
-        }
-
-        public static DataResponse<T> GetResponse<T>(this HttpClient client, string command)
-        {
-            var task = client.GetResponseAsync<T>(command);
-            task.Wait();
-
-            return task.Result;
-        }
-
-        public static DataResponse<T> GetResponse<T>(this HttpClient client, string command, params object[] parameters)
-        {
-            var task = client.GetResponseAsync<T>(string.Format(command, parameters));
-            task.Wait();
-
-            return task.Result;
-        }
+        
 
         public static async Task<byte[]> GetImageAsync(this HttpClient client, string command)
         {

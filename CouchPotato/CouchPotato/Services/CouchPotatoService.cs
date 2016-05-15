@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using CouchPotato.Model;
 
 namespace CouchPotato.Services
 {
@@ -42,20 +43,36 @@ namespace CouchPotato.Services
             return ver;
         }
 
-        public bool Restart()
+        public StatusCodes Restart()
         {
-            //const string command = "/app.restart";
+            const string command = "/app.restart";
 
-            throw new NotImplementedException();
-            //var response = _client.GetResponse<object>(command);
+            var response = _client.GetDynamicNoJSON(command);
+
+            var status = new StatusCodes
+            {
+                IsSuccess = response == "restarting",
+                Total = 0,
+                IsEmpty = true
+            };
+
+            return status;
         }
 
-        public bool Shutdown()
+        public StatusCodes Shutdown()
         {
-            //const string command = "/app.shutdown";
+            const string command = "/app.shutdown";
 
-            throw new NotImplementedException();
-            //var response = _client.GetResponse<object>(command);
+            var response = _client.GetDynamicNoJSON(command);
+
+            var status = new StatusCodes
+            {
+                IsSuccess = response == "shutdown",
+                Total = 0,
+                IsEmpty = true
+            };
+
+            return status;
         }
     }
 }

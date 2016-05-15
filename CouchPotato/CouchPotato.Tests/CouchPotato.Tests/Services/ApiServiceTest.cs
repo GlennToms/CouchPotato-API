@@ -1,12 +1,12 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace CouchPotato.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ApiServiceTest
     {
-        [TestMethod]
+        [Test]
         public void GetVersion_ReturnsV2()
         {
             //Arrange
@@ -19,7 +19,7 @@ namespace CouchPotato.Tests
             Assert.AreEqual("v2", version.Release);
         }
 
-        [TestMethod]
+        [Test]
         public void IsAvaliable_ReturnsTrue()
         {
             //Arrange
