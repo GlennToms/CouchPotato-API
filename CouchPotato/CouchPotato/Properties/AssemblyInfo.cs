@@ -16,10 +16,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
 
-// Version information for an assembly consists of the following four values:
+// VersionModel information for an assembly consists of the following four values:
 //
-//      Major Version
-//      Minor Version 
+//      Major VersionModel
+//      Minor VersionModel 
 //      Build Number
 //      Revision
 //

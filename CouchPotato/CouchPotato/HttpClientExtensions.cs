@@ -12,25 +12,18 @@ namespace CouchPotato
 {
     public static class HttpClientExtensions
     {
-        public static dynamic GetDynamic(this HttpClient client, string command)
+        // Returns Dynamic opjects (strings)
+        public static string GetStringNoJson(this HttpClient client, string command)
         {
-            var task = client.GetDynamicAsync(command);
+            var task = GetStringNoJsonAsync(client, command);
 
             task.Wait();
 
             return task.Result;
         }
 
-        public static dynamic GetDynamicNoJSON(this HttpClient client, string command)
-        {
-            var task = client.GetDynamicNoJSONAsync(command);
-
-            task.Wait();
-
-            return task.Result;
-        }
-
-        public static async Task<dynamic> GetDynamicNoJSONAsync(this HttpClient client, string command)
+        // Returns Dynamic opjects (strings)
+        public static async Task<string> GetStringNoJsonAsync(this HttpClient client, string command)
         {
             var response = await client.GetAsync(Settings.Instance.Url + command);
             AdjustContentType(response);
@@ -40,29 +33,18 @@ namespace CouchPotato
             return jsonString;
         }
 
-        //My First
-        public static T GetJson<T>(this HttpClient client, string command)
+
+        // Returns Dynamic opjects Json Parsed
+        public static dynamic GetDynamic(this HttpClient client, string command)
         {
-            var task = client.GetJsonAsync<T>(command);
+            var task = client.GetDynamicAsync(command);
 
             task.Wait();
 
             return task.Result;
         }
-        
-        //My Second
-        public static async Task<T> GetJsonAsync<T>(this HttpClient client, string command)
-        {
-            var response = await client.GetAsync(Settings.Instance.Url + command);
-            AdjustContentType(response);
 
-            var jsonString = await response.Content.ReadAsStringAsync();
-            var a = JsonConvert.DeserializeObject<T>(jsonString);
-
-            return a;
-            //return JsonConvert.DeserializeObject<T>(jsonString);
-        }
-
+        // Returns Dynamic opjects Json Parsed
         public static async Task<dynamic> GetDynamicAsync(this HttpClient client, string command)
         {
             var response = await client.GetAsync(Settings.Instance.Url + command);
@@ -72,16 +54,31 @@ namespace CouchPotato
 
             return JObject.Parse(jsonString);
         }
-        
 
-        public static async Task<byte[]> GetImageAsync(this HttpClient client, string command)
+
+        // Generic returns Json filled classes
+        public static T GetJson<T>(this HttpClient client, string command)
         {
-            var response = await client.GetAsync(Settings.Instance.Url + command);
-            byte[] img = await response.Content.ReadAsByteArrayAsync();
+            var task = client.GetJsonAsync<T>(command);
 
-            return img;
+            task.Wait();
+
+            return task.Result;
         }
 
+        // Generic returns Json filled classes
+        public static async Task<T> GetJsonAsync<T>(this HttpClient client, string command)
+        {
+            var response = await client.GetAsync(Settings.Instance.Url + command);
+            AdjustContentType(response);
+
+            var jsonString = await response.Content.ReadAsStringAsync();
+            
+            return JsonConvert.DeserializeObject<T>(jsonString);
+        }
+
+
+        // Get Bytes
         public static byte[] GetImage(this HttpClient client, string command)
         {
             var task = client.GetImageAsync(command);
@@ -90,6 +87,17 @@ namespace CouchPotato
             return task.Result;
         }
 
+        // Get Bytes
+        public static async Task<byte[]> GetImageAsync(this HttpClient client, string command)
+        {
+            var response = await client.GetAsync(Settings.Instance.Url + command);
+            byte[] img = await response.Content.ReadAsByteArrayAsync();
+
+            return img;
+        }
+
+
+        //Util to adjust returned Headers data.
         private static void AdjustContentType(HttpResponseMessage response)
         {
             response.Content.Headers.ContentType.CharSet = "UTF-8";

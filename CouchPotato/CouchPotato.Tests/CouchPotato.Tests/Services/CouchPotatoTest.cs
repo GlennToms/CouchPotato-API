@@ -19,7 +19,7 @@ namespace CouchPotato.Tests.Services
         }
 
         [Test]
-        public void IsAvaliable_ReturnsTrue()
+        public void IsAvaliable()
         {
             //Arrange
             var client = new Client(AppSettings.Url, AppSettings.ApiKey);

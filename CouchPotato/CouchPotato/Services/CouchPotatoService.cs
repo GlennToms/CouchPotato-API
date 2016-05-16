@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CouchPotato.Model;
+using CouchPotato.Model.CouchPotato;
 
 namespace CouchPotato.Services
 {
@@ -22,32 +23,29 @@ namespace CouchPotato.Services
         {
             const string command = "/app.available";
 
-            var response = _client.GetDynamic(command);
-            return (bool)response["success"].Value;
+            var response = _client.GetJson<StatusCodes>(command);
+            return response.IsSuccess;
         }
 
-        public Model.Version GetVersion()
+        public VersionModel GetVersion()
         {
             const string command = "/app.version";
 
-            var response = _client.GetDynamic(command);
-            var str = (string)response["version"].Value;
+            var response = _client.GetJson<VersionModel>(command);
 
-            var ver = new Model.Version()
-            {
-                OS = str.Split('-')[0].Trim(),
-                Type = str.Split('-')[1].Trim(),
-                Commit = str.Split('-')[2].Trim(),
-                Release = str.Split('-')[3].Trim()
-            };
-            return ver;
+            response.OS = response.VersionString.Split('-')[0].Trim();
+            response.Type = response.VersionString.Split('-')[1].Trim();
+            response.Commit = response.VersionString.Split('-')[2].Trim();
+            response.Release = response.VersionString.Split('-')[3].Trim();
+
+            return response;
         }
 
         public StatusCodes Restart()
         {
             const string command = "/app.restart";
 
-            var response = _client.GetDynamicNoJSON(command);
+            var response = _client.GetStringNoJson(command);
 
             var status = new StatusCodes
             {
@@ -63,7 +61,7 @@ namespace CouchPotato.Services
         {
             const string command = "/app.shutdown";
 
-            var response = _client.GetDynamicNoJSON(command);
+            var response = _client.GetStringNoJson(command);
 
             var status = new StatusCodes
             {

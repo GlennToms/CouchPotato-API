@@ -14,13 +14,13 @@ namespace CouchPotato.Sample
         {
             //Create a client.
             const string apiKey = "8fbfe59b9aee44c1ac42524ca8953be1";
-            const string url = "http://Server01:6886"; //Replace by your sickrage location
+            const string url = "http://Server01:6886"; //Replace by your CouchPotato location Hostname or IP
             var client = new Client(url, apiKey);
 
-            var result = client.Log.GetLogs(6);
+            var result = client.CouchPotato.IsAvaliable();
 
             Console.WriteLine();
-            Console.WriteLine(result.Total);
+            //Console.WriteLine(result.Total);
             Console.ReadLine();
         }
     }
