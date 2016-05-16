@@ -17,10 +17,10 @@ namespace CouchPotato.Sample
             const string url = "http://Server01:6886"; //Replace by your sickrage location
             var client = new Client(url, apiKey);
 
-            client.CouchPotato.Restart();
+            var result = client.Log.GetLogs(6);
 
             Console.WriteLine();
-            //Console.WriteLine(logs.Total);
+            Console.WriteLine(result.Total);
             Console.ReadLine();
         }
     }
