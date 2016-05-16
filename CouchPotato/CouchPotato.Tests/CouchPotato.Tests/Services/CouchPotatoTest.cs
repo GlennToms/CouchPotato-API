@@ -1,7 +1,6 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace CouchPotato.Tests
+namespace CouchPotato.Tests.Services
 {
     [TestFixture]
     public class ApiServiceTest

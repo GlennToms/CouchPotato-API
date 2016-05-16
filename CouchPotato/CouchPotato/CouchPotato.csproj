@@ -36,9 +36,9 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="HttpClientExtensions.cs" />
-    <Compile Include="Model\Logging\Log.cs" />
-    <Compile Include="Model\Logging\LogList.cs" />
-    <Compile Include="Model\Logging\Type.cs" />
+    <Compile Include="Model\Log\Log.cs" />
+    <Compile Include="Model\Log\LogList.cs" />
+    <Compile Include="Model\Log\Type.cs" />
     <Compile Include="Model\Movie\Files.cs" />
     <Compile Include="Model\Movie\ImagePoster.cs" />
     <Compile Include="Model\Movie\Identifiers.cs" />

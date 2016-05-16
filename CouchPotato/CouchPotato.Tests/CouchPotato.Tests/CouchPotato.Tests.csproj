@@ -71,10 +71,8 @@
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
     <Compile Include="ClientTest.cs" />
-    <Compile Include="Services\ApiServiceTest.cs" />
+    <Compile Include="Services\CouchPotatoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BaseServiceTest.cs" />
-    <Compile Include="Services\CouchPotatoServiceTest.cs" />
     <Compile Include="Services\LogServiceTest.cs" />
     <Compile Include="Services\MovieServiceTest.cs" />
   </ItemGroup>
