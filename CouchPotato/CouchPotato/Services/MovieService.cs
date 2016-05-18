@@ -1,10 +1,7 @@
 ﻿using CouchPotato.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using CouchPotato.Model.Movie;
 
 namespace CouchPotato.Services
@@ -54,20 +51,24 @@ namespace CouchPotato.Services
             {
                 IsSuccess = shows.IsSuccess,
                 Total = shows.Total,
-                IsEmpty = shows.IsEmpty,
-                CategoryId = shows.Movies[0].CategoryId,
-                Files = shows.Movies[0].Files,
-                ID = shows.Movies[0].ID,
-                Identifiers = shows.Movies[0].Identifiers,
-                Info = shows.Movies[0].Info,
-                ProfileId = shows.Movies[0].ProfileId,
-                Releases = shows.Movies[0].Releases,
-                Title = shows.Movies[0].Title,
-                Type = shows.Movies[0].Type1,
-                Type1 = shows.Movies[0].Type1,
-                Revision = shows.Movies[0].Revision,
-                Status = shows.Movies[0].Status
+                IsEmpty = shows.IsEmpty
             };
+
+            if (shows.Movies.Count > 0)
+            {
+                movie.CategoryId = shows.Movies[0].CategoryId;
+                movie.Files = shows.Movies[0].Files;
+                movie.ID = shows.Movies[0].ID;
+                movie.Identifiers = shows.Movies[0].Identifiers;
+                movie.Info = shows.Movies[0].Info;
+                movie.ProfileId = shows.Movies[0].ProfileId;
+                movie.Releases = shows.Movies[0].Releases;
+                movie.Title = shows.Movies[0].Title;
+                movie.Type = shows.Movies[0].Type1;
+                movie.Type1 = shows.Movies[0].Type1;
+                movie.Revision = shows.Movies[0].Revision;
+                movie.Status = shows.Movies[0].Status;
+            }
 
             return movie;
         }
@@ -120,6 +121,27 @@ namespace CouchPotato.Services
             var results = _client.GetJson<Movie>(newCommand.ToString());
 
             return results;
+        }
+
+        public StatusCodes DeleteMovie(string id, DeleteFrom deleteFrom = DeleteFrom.all)
+        {
+            if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(id));
+            if (!Enum.IsDefined(typeof(DeleteFrom), deleteFrom))
+                throw new ArgumentOutOfRangeException(nameof(deleteFrom),
+                    "Value should be defined in the DeleteFrom enum.");
+
+            const string command = "/movie.delete?id=";
+
+            var newCommand = new StringBuilder(command);
+
+            newCommand.Append("?id=" + id);
+            newCommand.Append("?delete_from=" + deleteFrom);
+
+            var shows = _client.GetJson<StatusCodes>(newCommand.ToString());
+
+            return shows;
         }
     }
 }

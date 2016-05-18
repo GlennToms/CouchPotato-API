@@ -40,6 +40,7 @@
     <Compile Include="Model\Log\Log.cs" />
     <Compile Include="Model\Log\LogList.cs" />
     <Compile Include="Model\Log\Type.cs" />
+    <Compile Include="Model\Movie\DeleteFrom.cs" />
     <Compile Include="Model\Movie\Files.cs" />
     <Compile Include="Model\Movie\ImagePoster.cs" />
     <Compile Include="Model\Movie\Identifiers.cs" />
