@@ -49,5 +49,18 @@ namespace CouchPotato.Tests.Services
             //Assert
             Assert.IsTrue(result.Movies.Count > 5);
         }
+
+        [Test]
+        public void RefreshMovies()
+        {
+            //Arrange
+            var client = new Client(AppSettings.Url, AppSettings.ApiKey);
+
+            //Act
+            var result = client.Movie.RefreshMovies();
+
+            //Assert
+            Assert.IsTrue(result.IsSuccess);
+        }
     }
 }

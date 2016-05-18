@@ -63,5 +63,17 @@ namespace CouchPotato.Services
 
             return movie;
         }
+
+        public StatusCodes RefreshMovies()
+        {
+            const string command = "/movie.refresh";
+
+            var shows = _client.GetJson<StatusCodes>(command);
+
+            shows.Total = 0;
+            shows.IsEmpty = false;
+
+            return shows;
+        }
     }
 }
