@@ -25,29 +25,36 @@ namespace CouchPotato.Tests.Services
         }
 
         [Test]
-        public void GetLogs_ByLines()
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        public void GetLogs_ByLines(int lines)
         {
             //Arrange
             var client = new Client(AppSettings.Url, AppSettings.ApiKey);
 
             //Act
-            var result = client.Log.GetLogs(3);
+            var result = client.Log.GetLogs(lines);
 
             //Assert
-            Assert.AreEqual(result.Log.Count, 3);
+            Assert.AreEqual(result.Log.Count, lines);
         }
 
         [Test]
-        public void GetLogs_ByType()
+        [TestCase(Type.all)]
+        [TestCase(Type.error)]
+        [TestCase(Type.info)]
+        public void GetLogs_ByType(Type type)
         {
             //Arrange
             var client = new Client(AppSettings.Url, AppSettings.ApiKey);
 
             //Act
-            var result = client.Log.GetLogs(Type.error);
+            var result = client.Log.GetLogs(type);
 
             //Assert
-            Assert.IsTrue(result.Total > 5);
+            Assert.IsTrue(result.Total > 0);
         }
     }
 }
