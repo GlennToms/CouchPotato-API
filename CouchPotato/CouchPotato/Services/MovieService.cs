@@ -29,6 +29,9 @@ namespace CouchPotato.Services
 
         public MovieList GetMovies(Status status)
         {
+            if (!Enum.IsDefined(typeof(Status), status))
+                throw new ArgumentOutOfRangeException(nameof(status), "Value should be defined in the Status enum.");
+
             const string command = "/movie.list/?release_status=";
 
             var shows = _client.GetJson<MovieList>(command + status);
@@ -38,6 +41,11 @@ namespace CouchPotato.Services
 
         public Movie GetMovie(string title)
         {
+            if (string.IsNullOrEmpty(title))
+                throw new ArgumentException("Value cannot be null or empty.", nameof(title));
+            if (string.IsNullOrWhiteSpace(title))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(title));
+
             const string command = "/movie.list/?search=";
 
             var shows = _client.GetJson<MovieList>(command + title);
@@ -109,7 +117,7 @@ namespace CouchPotato.Services
                 newCommand.Append("/?force=" + false);
             }
 
-             var results = _client.GetJson<Movie>(newCommand.ToString());
+            var results = _client.GetJson<Movie>(newCommand.ToString());
 
             return results;
         }

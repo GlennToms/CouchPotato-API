@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CouchPotato.Model;
 using CouchPotato.Model.Logging;
 using CouchPotato.Model.Movie;
+using Type = CouchPotato.Model.Logging.Type;
 
 namespace CouchPotato.Services
 {
@@ -32,6 +33,8 @@ namespace CouchPotato.Services
 
         public LogList GetLogs(int lines)
         {
+            if (lines <= 0) throw new ArgumentOutOfRangeException(nameof(lines));
+
             const string command = "/logging.partial/?lines=";
 
             var response = _client.GetJson<LogList>(command + lines);
@@ -41,8 +44,11 @@ namespace CouchPotato.Services
             return response;
         }
 
-        public LogList GetLogs(Model.Logging.Type type)
+        public LogList GetLogs(Type type)
         {
+            if (!Enum.IsDefined(typeof(Type), type))
+                throw new ArgumentOutOfRangeException(nameof(type), "Value should be defined in the Type enum.");
+
             const string command = "/logging.partial/?type=";
 
             var response = _client.GetJson<LogList>(command + type);
