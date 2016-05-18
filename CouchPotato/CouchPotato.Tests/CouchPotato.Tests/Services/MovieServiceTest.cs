@@ -62,5 +62,22 @@ namespace CouchPotato.Tests.Services
             //Assert
             Assert.IsTrue(result.IsSuccess);
         }
+
+        [Test]
+        [TestCase("tt1431045", "","", false)]
+        [TestCase("tt1431045", "", null, false)]
+        [TestCase("tt1431045", null, "", false)]
+        [TestCase("tt1431045", null, null, false)]
+        public void AddMovieByImdb(string identifier, string categoryId, string profileId, bool force)
+        {
+            //Arrange
+            var client = new Client(AppSettings.Url, AppSettings.ApiKey);
+
+            //Act
+            var result = client.Movie.AddMovieByImdb(identifier, categoryId, profileId, force);
+
+            //Assert
+            Assert.IsTrue(result.IsSuccess);
+        }
     }
 }

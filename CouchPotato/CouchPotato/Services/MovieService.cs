@@ -75,5 +75,43 @@ namespace CouchPotato.Services
 
             return shows;
         }
+
+        /// <summary>
+        /// Add a movie to couchpotato
+        /// </summary>
+        /// <param name="identifier">Movie title to use for searches.Has to be one of the titles returned by MovieSearch.</param>
+        /// <param name="profileId">ID of quality profile you want the add the movie in. If empty will use the default profile.</param>
+        /// <param name="categoryId">ID of category you want the add the movie in. If empty will use no category.</param>
+        /// <param name="force">Force readd even if movie already in wanted or manage</param>
+        public Movie AddMovieByImdb(string identifier, string categoryId = null, string profileId = null, bool force = true)
+        {
+            const string command = "/movie.add";
+
+            var newCommand = new StringBuilder(command);
+
+            if (!string.IsNullOrWhiteSpace(identifier))
+            {
+                newCommand.Append("/?identifier=" + identifier);
+            }
+
+            if (!string.IsNullOrWhiteSpace(categoryId))
+            {
+                newCommand.Append("/?category_id=" + categoryId);
+            }
+
+            if (!string.IsNullOrWhiteSpace(profileId))
+            {
+                newCommand.Append("/?profile_id=" + profileId);
+            }
+
+            if (!force)
+            {
+                newCommand.Append("/?force=" + false);
+            }
+
+             var results = _client.GetJson<Movie>(newCommand.ToString());
+
+            return results;
+        }
     }
 }
