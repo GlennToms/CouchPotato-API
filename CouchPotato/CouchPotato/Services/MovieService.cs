@@ -43,9 +43,11 @@ namespace CouchPotato.Services
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(title));
 
+            
+
             const string command = "/movie.list/?search=";
 
-            var shows = _client.GetJson<MovieList>(command + title);
+            var shows = _client.GetJson<MovieList>(command + Util.ReplaceSpecial(title));
 
             var movie = new Movie()
             {
