@@ -26,8 +26,8 @@ namespace CouchPotato.Tests.Services
 
         [Test]
         [TestCase("3:10 to Yuma")]
-        [TestCase("Zoolander")]
         [TestCase("Ant-Man")]
+        [TestCase("Zoolander")]
         [TestCase("After Earth")]
         public void GetMovie_ByName(string name)
         {
@@ -42,10 +42,10 @@ namespace CouchPotato.Tests.Services
         }
 
         [Test]
-        [TestCase(Status.active)]
+        //[TestCase(Status.active)]
+        //[TestCase(Status.snached)]
         [TestCase(Status.available)]
         [TestCase(Status.done)]
-        [TestCase(Status.snached)]
         public void GetMovie_ByStatus_True(Status status)
         {
             //Arrange
