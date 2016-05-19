@@ -7,6 +7,5 @@ namespace CouchPotato.Model.Movie
     {
         [JsonProperty("Movies")]
         public List<Movie> Movies { get; set; }
-
     }
 }

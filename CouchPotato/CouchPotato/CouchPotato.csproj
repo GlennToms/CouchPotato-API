@@ -46,6 +46,7 @@
     <Compile Include="Model\Movie\Identifiers.cs" />
     <Compile Include="Model\Movie\Images.cs" />
     <Compile Include="Model\Movie\Info.cs" />
+    <Compile Include="Model\Movie\MovieSingle.cs" />
     <Compile Include="Model\StatusCodes.cs" />
     <Compile Include="Model\Movie\Rating.cs" />
     <Compile Include="Model\Movie\Movie.cs" />

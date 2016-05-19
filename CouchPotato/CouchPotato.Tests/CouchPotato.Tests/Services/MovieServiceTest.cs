@@ -86,8 +86,7 @@ namespace CouchPotato.Tests.Services
 
             //Assert
             Assert.IsTrue(result.IsSuccess);
-            Assert.IsTrue(result.ID == "51cd36cbed40482e86a39a04033fef03");
-            Assert.IsTrue(result.Title == "Deadpool");
+            Assert.IsTrue(result.Movie.Title == "Deadpool");
         }
 
         [Test]

@@ -92,7 +92,7 @@ namespace CouchPotato.Services
         /// <param name="profileId">ID of quality profile you want the add the movie in. If empty will use the default profile.</param>
         /// <param name="categoryId">ID of category you want the add the movie in. If empty will use no category.</param>
         /// <param name="force">Force readd even if movie already in wanted or manage</param>
-        public Movie AddMovieByImdb(string identifier, string categoryId = null, string profileId = null, bool force = true)
+        public MovieSingle AddMovieByImdb(string identifier, string categoryId = null, string profileId = null, bool force = true)
         {
             const string command = "/movie.add";
 
@@ -118,7 +118,7 @@ namespace CouchPotato.Services
                 newCommand.Append("/?force=" + false);
             }
 
-            var results = _client.GetJson<Movie>(newCommand.ToString());
+            var results = _client.GetJson<MovieSingle>(newCommand.ToString());
 
             return results;
         }
