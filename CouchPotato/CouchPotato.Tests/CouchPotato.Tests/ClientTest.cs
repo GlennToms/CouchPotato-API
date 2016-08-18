@@ -15,7 +15,7 @@ namespace CouchPotato.Tests
         public void WithHttpAndPortNoEndSlash()
         {
             //Arrange
-            var client = new Client("http://Server01:6886", AppSettings.ApiKey);
+            var client = new Client(AppSettings.Url, AppSettings.ApiKey);
 
             //Act
             var result = client.CouchPotato.IsAvaliable();
@@ -28,7 +28,7 @@ namespace CouchPotato.Tests
         public void WithHttpAndPortEndSlash()
         {
             //Arrange
-            var client = new Client("http://Server01:6886/", AppSettings.ApiKey);
+            var client = new Client(AppSettings.Url, AppSettings.ApiKey);
 
             //Act
             var result = client.CouchPotato.IsAvaliable();

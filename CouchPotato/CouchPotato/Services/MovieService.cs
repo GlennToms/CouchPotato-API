@@ -75,11 +75,13 @@ namespace CouchPotato.Services
             return movie;
         }
 
-        public void RefreshMovies()
+        public StatusCodes RefreshMovies()
         {
             const string command = "/movie.refresh";
 
-            _client.GetJson<StatusCodes>(command);
+            var results =_client.GetJson<StatusCodes>(command);
+
+            return results;
         }
 
         /// <summary>
