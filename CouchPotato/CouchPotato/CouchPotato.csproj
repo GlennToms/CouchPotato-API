@@ -59,6 +59,7 @@
     <Compile Include="Services\CouchPotatoService.cs" />
     <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\MovieService.cs" />
+    <Compile Include="Services\Renamer.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
