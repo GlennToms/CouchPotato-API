@@ -1,7 +1,9 @@
 # CouchPotato-API
 C-Sharp API for CouchPotato
+A library to consume the CouchPotato api from within a .net application.
+CouchPotato can be found here https://couchpota.to/
 
-Code cloned from https://github.com/SiCKRAGETV/SickRage.
+Code cloned from https://github.com/prebenh/SickRageApi.Net.
 
 ## Setup
 You'll need the CouchPotato url and api key. The api key can be found from "Settings" => "Show Advanced" => Api Key.
