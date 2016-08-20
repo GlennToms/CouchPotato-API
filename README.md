@@ -8,6 +8,11 @@ Code cloned from https://github.com/prebenh/SickRageApi.Net.
 ## Setup
 You'll need the CouchPotato url and api key. The api key can be found from "Settings" => "Show Advanced" => Api Key.
 
+###Dependencies
+
++ JSON.net
+
+
 ## Supported Fuctions
 + Listing Movies and Logs.
 + Adding and Removing Movies.
