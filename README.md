@@ -13,7 +13,7 @@ You'll need the CouchPotato url and api key. The api key can be found from "Sett
 + JSON.net
 
 
-## Supported Fuctions
+## Supported Functions
 + Listing Movies and Logs.
 + Adding and Removing Movies.
 + Checking CouchPotato Health.
