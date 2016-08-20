@@ -12,7 +12,7 @@ namespace CouchPotato.Sample
             const string url = "http://server01:6886"; //Replace by your CouchPotato location Hostname or IP.
             var client = new Client(url, apiKey);
 
-            var result = client.Renamer.IsScanning();
+            var result = client.Renamer.Rename();
             
             Console.WriteLine(result.ToString());
             Console.ReadLine();

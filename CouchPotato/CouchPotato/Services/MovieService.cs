@@ -87,7 +87,7 @@ namespace CouchPotato.Services
         /// <summary>
         /// Add a movie to couchpotato
         /// </summary>
-        /// <param name="identifier">Movie title to use for searches.Has to be one of the titles returned by MovieSearch.</param>
+        /// <param name="identifier">Movie title to use for searches. Has to be one of the titles returned by MovieSearch.</param>
         /// <param name="profileId">ID of quality profile you want the add the movie in. If empty will use the default profile.</param>
         /// <param name="categoryId">ID of category you want the add the movie in. If empty will use no category.</param>
         /// <param name="force">Force readd even if movie already in wanted or manage</param>
