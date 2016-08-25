@@ -42,3 +42,5 @@ var logs = client.Log.GetLogs(Type.all);
 var logs = client.Log.GetLogs(Type.error);
 var logs = client.Log.GetLogs(Type.info);
 ```
+
+[![Build Status](https://travis-ci.org/GlennToms/CouchPotatoAPI.Net.svg?branch=master)](https://travis-ci.org/GlennToms/CouchPotatoAPI.Net)
